@@ -215,7 +215,7 @@ func CreateBlockchain(address string) *Blockchain {
 	}
 
 	err = db.Update(func(tx *bolt.Tx) error {
-		cbtx := NewCoinBaseTx(address, genesisCoinbaseData)
+		cbtx := NewCoinBaseTX(address, genesisCoinbaseData)
 		genesis := NewGenesisBlock(cbtx)
 
 		b, err := tx.CreateBucket([]byte(blocksBucket))
