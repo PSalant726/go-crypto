@@ -292,6 +292,7 @@ func handleGetData(request []byte, bc *Blockchain) {
 		tx := mempool[txID]
 
 		sendTx(payload.AddrFrom, &tx)
+		// delete(mempool, txID)
 	}
 }
 
@@ -380,6 +381,7 @@ func handleVersion(request []byte, bc *Blockchain) {
 		sendVersion(payload.AddrFrom, bc)
 	}
 
+	// sendAddr(payload.AddrFrom)
 	if !nodeIsKnown(payload.AddrFrom) {
 		knownNodes = append(knownNodes, payload.AddrFrom)
 	}
