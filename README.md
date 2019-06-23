@@ -11,33 +11,33 @@ $ go build
 ```sh
 $ ./go-crypto
 ```
-> Note: Running `go-crypto` with no arguments will print usage instructions to `stdout`.
+> Note: Running `./go-crypto` with no arguments will print usage instructions to `stdout`.
 
 ## CLI Usage
 The "distributed" nature of this blockchain is to run many nodes on a single machine, by specifying port numbers as node IDs. You can specify the port number/node ID in a given terminal session by setting the `$NODE_ID` environment variable to your port number of choice.
 
-### `createblockchain -address <address>`
+#### `createblockchain -address <address>`
 Create a new blockchain (genesis block), and send the genesis block reward to `<address>`.
 
-### `createwallet`
+#### `createwallet`
 Generate a new wallet key pair, and save it into a corresponding `wallet.dat` file. Outputs the address of the new wallet to `stdout`.
 
-### `getbalance -address <address>`
+#### `getbalance -address <address>`
 Print the wallet balance for `<address>` to `stdout`.
 
-### `listaddresses`
+#### `listaddresses`
 Print all addresses in any `wallet.dat` files to `stdout`.
 
-### `printchain`
+#### `printchain`
 Print all blocks in the blockchain to `stdout`.
 
-### `reindexutxo`
+#### `reindexutxo`
 Rebuilds the UTXO set.
 
-### `send -from <address> -to <address> -amount <amount>[ -mine]`
+#### `send -from <address> -to <address> -amount <amount>[ -mine]`
 Send `<amount>` of coins from address to address. When `-mine` is used, mine on the current node.
 
-### `startnode[ -miner <address>]`
+#### `startnode[ -miner <address>]`
 Start a node with an ID specified in `$NODE_ID` environment variable. Optionally specify a `-miner` address.
 
 ## Example
