@@ -8,9 +8,11 @@ import (
 	"math/big"
 )
 
-const targetBits = 16
+var (
+	maxNonce = math.MaxInt64
+)
 
-var maxNonce = math.MaxInt64
+const targetBits = 16
 
 type ProofOfWork struct {
 	block  *Block
@@ -49,8 +51,11 @@ func (pow *ProofOfWork) Run() (int, []byte) {
 	fmt.Printf("Mining a new block")
 	for nonce < maxNonce {
 		data := pow.prepareData(nonce)
+
 		hash = sha256.Sum256(data)
-		fmt.Printf("\r%x", hash)
+		if math.Remainder(float64(nonce), 100000) == 0 {
+			fmt.Printf("\r%x", hash)
+		}
 		hashInt.SetBytes(hash[:])
 
 		if hashInt.Cmp(pow.target) == -1 {
@@ -59,7 +64,6 @@ func (pow *ProofOfWork) Run() (int, []byte) {
 			nonce++
 		}
 	}
-
 	fmt.Print("\n\n")
 
 	return nonce, hash[:]
